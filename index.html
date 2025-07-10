@@ -9,25 +9,47 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
-      background: #111;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-family: Arial, sans-serif;
+    }
+
+    #warning {
+      display: none;
+      height: 100%;
+      background-color: #111;
+      color: white;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      padding: 2rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
     }
   </style>
+</head>
+<body>
+  <div id="warning">
+    <p>📱 Silakan putar perangkat Anda ke mode <strong>landscape</strong> untuk melihat situs ini.</p>
+  </div>
+  <iframe id="siteFrame" src="https://rkhanartstudio.my.canva.site/agr-1151-5-001" title="RKhan Art Studio"></iframe>
+
   <script>
     function checkOrientation() {
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       const isPortrait = window.innerHeight > window.innerWidth;
-      const canvaURL = "https://rkhanartstudio.my.canva.site/agr-1151-5-001";
+      const warning = document.getElementById('warning');
+      const iframe = document.getElementById('siteFrame');
 
       if (isMobile && isPortrait) {
-        document.body.innerHTML = "<p>📱 Silakan putar perangkat Anda ke mode <strong>landscape</strong> untuk melihat situs ini.</p>";
+        warning.style.display = "flex";
+        iframe.style.display = "none";
       } else {
-        window.location.href = canvaURL;
+        warning.style.display = "none";
+        iframe.style.display = "block";
       }
     }
 
@@ -35,8 +57,5 @@
     window.onresize = checkOrientation;
     window.onorientationchange = checkOrientation;
   </script>
-</head>
-<body>
-  <noscript>Anda perlu mengaktifkan JavaScript untuk membuka situs ini.</noscript>
 </body>
 </html>
